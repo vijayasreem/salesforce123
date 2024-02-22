@@ -1,0 +1,19 @@
+<template>
+    <lightning-card>
+
+       <B class="slds-p-left_small"> Queue List</B>
+       <div if:true={fxfollowup} class="slds-p-left_large slds-p-top_small">
+        <a onclick={handleCoverSheetListViewNavigation}>  Cover Sheet Fax Failures</a></br></br>
+        </div>
+            <div if:true={srfollowup} class="slds-p-left_large slds-p-top_small">
+           <a onclick={handleListViewNavigation} >  Service Request Followup</a></br></br>
+        </div>
+        <div if:true={rfollowup} class="slds-p-left_large slds-p-top_small">
+		   <a onclick={handleProcessReviewListViewNavigation}>  Service Request Process Review</a></br></br>
+           </div>
+           <div if:true={umfollowup} class="slds-p-left_large slds-p-top_small">
+		   <a  onclick={handleUnmatchedListViewNavigation}>  Unmatched Provider Documents </a>
+        </div>
+        
+    </lightning-card>
+</template>

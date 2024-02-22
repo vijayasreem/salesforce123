@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Service Request Line Items" >
+        <template if:true={srdrecords}>
+            <div class="slds-m-around_medium">
+                <lightning-layout>
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Name</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Service Name</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Status</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Missing Pages</span>
+                    </lightning-layout-item> 
+                    <lightning-layout-item size="3">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Note</span>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <br>
+                <template for:each={srdrecords} for:item="rec">
+                    <lightning-layout key={rec.Id}>
+                        <lightning-layout-item size="2"><span class="slds-p-around_small ">
+                            <lightning-button name={rec.Id} label={rec.Name} variant="base"  onclick={navigateToClientRecordViewPage}></lightning-button></span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Service__r.Name}</span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Status__c}</span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="3">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Missing_Pages__c}</span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="3">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Note__c}</span>
+                        </lightning-layout-item>
+                </lightning-layout>
+                </template>
+            </div>
+        </template>
+    </lightning-card>    
+</template>

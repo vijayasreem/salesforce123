@@ -1,0 +1,89 @@
+<template>
+    <lightning-card title="Service Request Documents" >
+        <template if:true={rpdrecords}>
+            <div class="slds-m-around_medium">
+                <lightning-layout>
+                     <lightning-layout-item size="1">
+                    </lightning-layout-item>
+                    <lightning-layout-item size="1">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Name</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="1">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">SRLI Name</span>
+                    </lightning-layout-item>
+                     <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Service Type</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">RD Azure Location Link</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Received Date</span>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="1">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Status</span>
+                    </lightning-layout-item>   
+                    <lightning-layout-item size="2">
+                        <span class="slds-p-around_small "
+                        style=" height:100%;font-size:16px;font-weight: bold;">Reviewed Status</span>
+                    </lightning-layout-item>                    
+                </lightning-layout>
+                <br>
+                <template for:each={rpdrecords} for:item="rec">
+                    <lightning-layout key={rec.Id}>
+                        <lightning-layout-item size="1"><span class="slds-var-m-top_large slds-var-p-right_medium">
+                          <template if:true={rec.isCanceled}>
+                            <template if:false={rec.Is_Reviewed__c}>
+                                <lightning-input  name={rec.Id}  type="checkbox" checked={checkboxVal}  onchange={handleOnchange}>
+                                </lightning-input>
+                            </template>
+                        </template>
+                            </span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="1"><span class="slds-p-around_small ">
+                            <lightning-button name={rec.Id} label={rec.Name} variant="base"  onclick={navigateToClientRecordViewPage}></lightning-button></span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="1"><span class="slds-p-around_small ">
+                            <lightning-button name={rec.Service_Request_Detail__c} label={rec.Service_Request_Line_Item__r.Name} variant="base"  onclick={navigateToClientRecordViewPage}></lightning-button></span>
+                        </lightning-layout-item>
+                         <lightning-layout-item size="2">
+                             <span class="slds-p-around_small slds-p-top_medium"> {rec.Account_Product_Service__c}</span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2">
+                            <!-- <span class="slds-p-around_small slds-p-top_medium"><a  href="/lightning/cmp/c__LinkToAzureAttachmentWithSASToken?c__recid=" target="_self">Click to Download</a></span> -->
+                            <span class="slds-p-around_small slds-p-top_medium"><lightning-formatted-rich-text value={rec.Received_Documents_Azure_Location_Link__c}></lightning-formatted-rich-text></span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="2">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Received_Date__c}</span>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="1">
+                            <span class="slds-p-around_small slds-p-top_medium">{rec.Status__c}</span>
+                        </lightning-layout-item>
+                         <lightning-layout-item size="2">
+                            <span class="slds-p-around_small slds-p-top_medium">
+                                <template if:true={rec.Is_Reviewed__c}>
+                                    Reviewed
+                                </template>
+                                <template if:false={rec.Is_Reviewed__c}>
+                                    Not Reviewed
+                                </template>
+                            </span>
+                        </lightning-layout-item>
+                </lightning-layout>
+                </template>
+                <template if:true={selrecflag}> 
+                    <div class="slds-m-top_small slds-m-medium"><span class="slds-p-around_small slds-p-top_medium">
+                        <lightning-button  label="Reviewed" name="Reviewed" variant="brand"  onclick={handleonbuttonclick}></lightning-button>&nbsp;&nbsp;
+                        <lightning-button  label="Archived" name="Archived" variant="brand"  onclick={handleonbuttonclick}></lightning-button></span>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </lightning-card>    
+</template>
