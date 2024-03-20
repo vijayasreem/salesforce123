@@ -1,0 +1,15 @@
+
+<trigger>
+  <name>CreditCheckPreQualificationProcess</name>
+  <description>Perform credit check and pre-qualification process for loan applicants</description>
+  <userStory>
+    <as>A bank</as>
+    <want>To perform a credit check on loan applicants to assess their creditworthiness and pre-qualify them for a loan amount and interest rate range based on their credit score and financial history</want>
+  </userStory>
+  <acceptanceCriteria>
+    <criterion>The system should accurately evaluate the applicant's creditworthiness through a credit check process</criterion>
+    <criterion>The system should consider the applicant's credit score and financial history to determine the loan amount and interest rate range for pre-qualification</criterion>
+    <criterion>The pre-qualification results should align with the applicant's credit score and financial history</criterion>
+    <criterion>The system should provide a clear and understandable explanation of the pre-qualification outcome to the applicant</criterion>
+  </acceptanceCriteria>
+</trigger>
